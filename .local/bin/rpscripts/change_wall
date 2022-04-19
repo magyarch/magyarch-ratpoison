@@ -1,0 +1,15 @@
+#!/bin/sh
+
+VAR=$1
+
+if [ $VAR !="no" ]
+then
+while [ true ]
+do
+    ~/.local/bin/wal
+    sleep 5m
+    clear
+done
+else
+    killall wal
+fi

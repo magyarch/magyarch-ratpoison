@@ -22,14 +22,17 @@ exec /usr/bin/rpws init 6 -k
 #rudeness 13
 warp on
 startup_message off
-set winname title
-set wingravity center
-set maxsizegravity center
-set transgravity center
+set historyexpansion 1
+set historycompaction 1
+set historysize 1000
+set winliststyle column
+set barpadding 8 8
+set winfmt %n%s%t
+set framefmt %t
+set infofmt (%H, %W) %n(%c - %a) -- PID: %p, XWID: %i
 set resizeunit 10
-set border 1
-set barborder 1
-set barpadding 1 1 
+set border 3
+set barborder 3
 set barinpadding 0
 set padding 10 28 10 10
 set bargravity n
@@ -38,6 +41,10 @@ set bgcolor #000000
 set fgcolor #477d8f
 set fwcolor #2e8b57
 set bwcolor #000000
+
+unmanage panel
+unmanage dzen2
+unmanage steam
 
  alias grid exec ratpoison -c "select -" -c "only" -c "hsplit" -c next -c "vsplit" -c next -c "focusright" -c next -c "vsplit" -c "next"
 
@@ -49,26 +56,37 @@ escape Super_L
 
 # KEYBINDS (after win keypress)
 #----------------------------------
-bind s select
-bind Tab focus
+
 bind u undo
-bind w exec brave
+bind z redo
 bind c exec rofi_run -l
 bind d exec dmenu_run -i -p 'Search' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font:size=12'
 bind Return exec alacritty
+bind R resize
 bind p exec pavucontrol
+bind s select
+bind Tab focuslast
 bind C-a exec alacritty
-bind C-b exec hidebar
+bind C-b exec brave
 bind C-c exec rofi_run -l
 bind C-d exec discord
 bind C-e exec edconf.sh
 bind C-f exec alacritty -e vifm
+bind C-h exec split_and_focus.sh horiz
+bind C-v exec split_and_focus.sh vert
+bind C-k exec ratpoison -c "only" -c "hsplit" -c "vsplit" -c next -c "focusright" 
+bind C-j exec ratpoison -c "only" -c "vsplit" -c "hsplit" -c next -c "focusright"
+bind C-o only
+bind C-r remove
 bind C-g grid
 bind C-s exec subl
 bind C-x restart
 bind C-q exec ratpoison -c delete -c remove
 bind C-w exec brave
 bind C-Escape quit
+
+bind S-p exec pcmanfm
+
 
 
 # FUNCTION KEYS
@@ -82,7 +100,7 @@ bind F5 exec maimpick
 # WINDOW MANIPULATION
 #--------------------
 #bind M-h exec ratpoison -c fdump > $HOME/.rpfdump; ratpoison -c 'select -' -c only
-bind M-h exec dumporrestore.sh
+#bind M-a exec dumporrestore.sh
 #bind M-s exec ratpoison -c "frestore `cat $HOME/.rpfdump`"
 bind M-s exec dumporrestore.sh
 bind M-t exec toggle-borders
@@ -90,13 +108,8 @@ bind M-v exec ratpoison -c "vsplit" -c next -c "focusdown" -c next
 bind M-h exec ratpoison -c "hsplit" -c next -c "focusright" -c next
 bind M-i exec ratpoison -c "hsplit 2/3" -c focusright 
 bind M-o exec ratpoison -c "vsplit 2/3" -c focusright 
-bind C-h exec split_and_focus.sh horiz
-bind C-v exec split_and_focus.sh vert
-bind C-k exec ratpoison -c "only" -c "hsplit" -c "vsplit" -c next -c "focusright" 
-bind C-j exec ratpoison -c "only" -c "vsplit" -c "hsplit" -c next -c "focusright"
-bind C-o only
-bind C-r remove
-bind R resize
+
+
 
 
 # Focus
