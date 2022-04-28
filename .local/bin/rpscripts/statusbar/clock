@@ -1,7 +1,0 @@
-#!/bin/sh
-
-date '+%Y %b %d (%a) %H:%M%p'
-
-case $BLOCK_BUTTON in
-	1) "gnome-calendar" ;;
-esac

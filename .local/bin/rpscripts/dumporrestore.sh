@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [[ ! -e $HOME/.rpfdump ]] ; then
   ratpoison -c "fdump" > $HOME/.rpfdump; ratpoison -c 'select -' -c only

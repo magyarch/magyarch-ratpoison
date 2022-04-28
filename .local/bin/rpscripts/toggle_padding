@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#Toggle RatPoison's padding
+if ps ax | grep -v grep | grep polybar > /dev/null
+then
+    #If Trayer is running, kill it and remove RatPoison's padding.
+    killall polybar
+    ratpoison -c "set padding 0 0 0 0"
+else
+    #Otherwise, reset the padding to normal and restart Trayer.
+    ratpoison -c "set padding 10 42 10 10"
+    sleep 1s && ~/.config/polybar/launch.sh &
+fi

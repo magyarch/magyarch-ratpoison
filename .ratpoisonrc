@@ -4,6 +4,19 @@
 
 # AUTOSTART
 #--------------------------------------------
+#exec bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a"
+exec (sleep 1s && ~/.config/polybar/launch.sh)
+exec killall -9 picom || picom --experimental-backends
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec xsetroot -cursor_name left_ptr 
+exec xset r rate 400 30 
+exec unclutter 
+exec xset s off -dpms
+exec setbg
+exec nm-applet
+exec killall -9 redshift && redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v
+exec dunst
+exec change_wall
 
 #System
 exec /usr/bin/rpws init 6 -k
@@ -12,21 +25,17 @@ exec /usr/bin/rpws init 6 -k
 #unmanage dzen2
 #Mouse
 #exec ratpoison -c "banish"
+#exec /usr/share/ratpoison/sloppy
 
-
-#Bar
-#exec (sleep 1s && ~/.config/polybar/launch.sh)
 
 # SETTINGS
 #--------------------------------
 #rudeness 13
+msgwait 3
 warp on
 startup_message off
-set historyexpansion 1
-set historycompaction 1
-set historysize 1000
 set winliststyle column
-set barpadding 8 8
+set barpadding 2 2
 set winfmt %n%s%t
 set framefmt %t
 set infofmt (%H, %W) %n(%c - %a) -- PID: %p, XWID: %i
@@ -34,20 +43,17 @@ set resizeunit 10
 set border 3
 set barborder 3
 set barinpadding 0
-set padding 10 28 10 10
-set bargravity n
-set font "JetBrains Mono Nerd Font:size=13"
+set padding 10 42 10 10
+set bargravity sw
+set font "JetBrains Mono Nerd Font:size=12"
 set bgcolor #000000
 set fgcolor #477d8f
 set fwcolor #2e8b57
 set bwcolor #000000
 
-unmanage panel
-unmanage dzen2
-unmanage steam
 
- alias grid exec ratpoison -c "select -" -c "only" -c "hsplit" -c next -c "vsplit" -c next -c "focusright" -c next -c "vsplit" -c "next"
-
+alias grid exec ratpoison -c "select -" -c "only" -c "hsplit" -c next -c "vsplit" -c next -c "focusright" -c next -c "vsplit" -c "next"
+alias cmaster exec ratpoison -c "hsplit 1/5" -c "focusright" -c "hsplit 3/4"
 
 # ESCAPE KEY (replace key chord C-t with win)
 #---------------------------------------------
@@ -56,20 +62,21 @@ escape Super_L
 
 # KEYBINDS (after win keypress)
 #----------------------------------
-
+bind q delete
 bind u undo
 bind z redo
-bind c exec rofi_run -l
+bind C-a exec toggle_alacritty
+bind c exec cmaster
 bind d exec dmenu_run -i -p 'Search' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font:size=12'
-bind Return exec alacritty
+bind C-Return exec alacritty
 bind R resize
-bind p exec pavucontrol
+#bind a exec ratpoison -c "vsplit 1/2" && scratch FM
+bind M-a exec ratpoison -c "set padding 10 42 10 10"
 bind s select
-bind Tab focuslast
-bind C-a exec alacritty
-bind C-b exec brave
+definekey top Tab focus
+definekey top C-b exec toggle-borders && toggle_padding && brave
 bind C-c exec rofi_run -l
-bind C-d exec discord
+definekey top C-d exec discord
 bind C-e exec edconf.sh
 bind C-f exec alacritty -e vifm
 bind C-h exec split_and_focus.sh horiz
@@ -77,15 +84,17 @@ bind C-v exec split_and_focus.sh vert
 bind C-k exec ratpoison -c "only" -c "hsplit" -c "vsplit" -c next -c "focusright" 
 bind C-j exec ratpoison -c "only" -c "vsplit" -c "hsplit" -c next -c "focusright"
 bind C-o only
+definekey top  C-m exec spotify --force-device-scale-factor=2
+bind C-t exec toggle_padding
 bind C-r remove
 bind C-g grid
-bind C-s exec subl
-bind C-x restart
-bind C-q exec ratpoison -c delete -c remove
-bind C-w exec brave
-bind C-Escape quit
+definekey top C-s exec subl
+definekey top C-x restart
+definekey top C-q exec ratpoison -c delete -c remove
+definekey top C-w exec brave
+definekey top C-Escape quit
 
-bind S-p exec pcmanfm
+definekey top C-p exec pcmanfm
 
 
 
@@ -144,8 +153,9 @@ bind M-9 rpwsm9
 # # Multimedia
 # bind XF86MonBrightnessUp exec lux -a 10%
 # bind XF86MonBrightnessDown exec lux -s 10%
-bind M-Up exec pamixer --allow-boost -i 5 >/dev/null
-bind M-Down exec pamixer --allow-boost -d 5 >/dev/null
+definekey top M-Up exec pamixer --allow-boost -i 5 >/dev/null
+definekey top M-Down exec pamixer --allow-boost -d 5 >/dev/null
+
 
 
 # RPWS (ratpoison workspaces)

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#Toggle RatPoison's padding
+if ps ax | grep -v grep | grep alacritty > /dev/null
+then
+    #If Trayer is running, kill it and remove RatPoison's padding.
+    killall alacritty
+    ratpoison -c "set padding 680 380 680 380" && alacritty
+else
+    #Otherwise, reset the padding to normal and restart Trayer.
+    killall alacritty 
+    sleep 2s && ratpoison -c "set padding 10 42 10 10"
+fi
