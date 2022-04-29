@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# AUTOSTART
+#--------------------------------------------
+
+export GDK_SCALE=2
+bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" &
+xsetroot -cursor_name left_ptr &
+xset r rate 400 30 &	
+unclutter &		
+xset s off -dpms &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+picom --experimental-backends &
+#picom --config ~/.config/picom.conf &
+dunst &
+setbg &
+feh --bg-fill --randomize ~/.local/bin/wallpapers/Future/*
+redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v &

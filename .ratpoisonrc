@@ -4,25 +4,11 @@
 
 # AUTOSTART
 #--------------------------------------------
-#exec bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a"
-exec (sleep 1s && ~/.config/polybar/launch.sh)
-exec killall -9 picom || picom --experimental-backends
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec xsetroot -cursor_name left_ptr 
-exec xset r rate 400 30 
-exec unclutter 
-exec xset s off -dpms
-exec setbg
-exec nm-applet
-exec killall -9 redshift && redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v
-exec dunst
-exec change_wall
 
 #System
 exec /usr/bin/rpws init 6 -k
+unmanage dzen2
 
-
-#unmanage dzen2
 #Mouse
 #exec ratpoison -c "banish"
 #exec /usr/share/ratpoison/sloppy
@@ -30,7 +16,7 @@ exec /usr/bin/rpws init 6 -k
 
 # SETTINGS
 #--------------------------------
-#rudeness 13
+rudeness 13
 msgwait 3
 warp on
 startup_message off
@@ -73,7 +59,7 @@ bind R resize
 #bind a exec ratpoison -c "vsplit 1/2" && scratch FM
 bind M-a exec ratpoison -c "set padding 10 42 10 10"
 bind s select
-definekey top Tab focus
+definekey top C-Tab focus
 definekey top C-b exec toggle-borders && toggle_padding && brave
 bind C-c exec rofi_run -l
 definekey top C-d exec discord
@@ -88,7 +74,7 @@ definekey top  C-m exec spotify --force-device-scale-factor=2
 bind C-t exec toggle_padding
 bind C-r remove
 bind C-g grid
-definekey top C-s exec subl
+bind C-s exec subl
 definekey top C-x restart
 definekey top C-q exec ratpoison -c delete -c remove
 definekey top C-w exec brave

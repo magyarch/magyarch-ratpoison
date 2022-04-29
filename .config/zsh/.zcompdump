@@ -51,6 +51,7 @@ _comps=(
 'appletviewer' '_java'
 'apropos' '_man'
 'apvlv' '_pdf'
+'arch-chroot' '_archinstallscripts'
 'arecord' '_alsa-utils'
 'arena' '_webbrowser'
 'arp' '_arp'
@@ -104,6 +105,7 @@ _comps=(
 'brctl' '_brctl'
 'bsdgrep' '_grep'
 'bsdtar' '_tar'
+'bspc' '_bspc'
 'btdownloadcurses' '_bittorrent'
 'btdownloadgui' '_bittorrent'
 'btdownloadheadless' '_bittorrent'
@@ -120,6 +122,7 @@ _comps=(
 'bunzip2' '_bzip2'
 'burst' '_mh'
 'busctl' '_busctl'
+'bwrap' '_bwrap'
 'bzcat' '_bzip2'
 'bzegrep' '_grep'
 'bzfgrep' '_grep'
@@ -389,6 +392,7 @@ _comps=(
 'geany' '_geany'
 'gegrep' '_grep'
 'gem' '_gem'
+'genfstab' '_archinstallscripts'
 'genisoimage' '_genisoimage'
 'genv' '_env'
 'get' '_sccs'
@@ -860,6 +864,7 @@ _comps=(
 'pacman.static' '_pacman'
 'pacmd' '_pulseaudio'
 'pactl' '_pulseaudio'
+'pacstrap' '_archinstallscripts'
 'padsp' '_pulseaudio'
 'pandoc' '_pandoc'
 'paplay' '_pulseaudio'
@@ -1259,9 +1264,6 @@ _comps=(
 'tty' '_tty'
 'ttyctl' '_ttyctl'
 'udevadm' '_udevadm'
-'udiskie' '_udiskie'
-'udiskie-mount' '_udiskie-mount'
-'udiskie-umount' '_udiskie-umount'
 'ulimit' '_ulimit'
 'uml_mconsole' '_uml'
 'uml_moo' '_uml'
@@ -1452,6 +1454,7 @@ _comps=(
 'xzcat' '_xz'
 'yafc' '_yafc'
 'yash' '_sh'
+'youtube-dl' '_youtube-dl'
 'ypbind' '_yp'
 'ypcat' '_yp'
 'ypmatch' '_yp'
@@ -1464,7 +1467,6 @@ _comps=(
 'ypxfr' '_yp'
 'ytalk' '_other_accounts'
 'zargs' '_zargs'
-'zathura' '_zathura'
 'zcalc' '_zcalc'
 '-zcalc-line-' '_zcalc_line'
 'zcat' '_zcat'
@@ -1621,15 +1623,15 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _alacritty _bat _bootctl _busctl _coredumpctl \
-            _curl _hostnamectl _journalctl _kernel-install _libinput \
-            _localectl _loginctl _machinectl _mkinitcpio _mpv \
-            _networkctl _pacman _paru _polybar _polybar_msg \
-            _pulseaudio _qpdf _resolvectl _sd_hosts_or_user_at_host _sd_machines \
-            _sd_outputmodes _sd_unit_files _systemctl _systemd _systemd-analyze \
-            _systemd-delta _systemd-inhibit _systemd-nspawn _systemd-path _systemd-run \
-            _systemd-tmpfiles _timedatectl _udevadm _udiskie _udiskie-mount \
-            _udiskie-umount _vifm _xwallpaper _zathura _cdr \
+autoload -Uz _alacritty _archinstallscripts _bat _bootctl _bspc \
+            _busctl _bwrap _coredumpctl _curl _hostnamectl \
+            _journalctl _kernel-install _libinput _localectl _loginctl \
+            _machinectl _mkinitcpio _mpv _networkctl _pacman \
+            _paru _polybar _polybar_msg _pulseaudio _qpdf \
+            _resolvectl _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files \
+            _systemctl _systemd _systemd-analyze _systemd-delta _systemd-inhibit \
+            _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles _timedatectl \
+            _udevadm _vifm _xwallpaper _youtube-dl _cdr \
             _all_labels _all_matches _alternative _approximate _arg_compile \
             _arguments _bash_completions _cache_invalid _call_function _combination \
             _complete _complete_debug _complete_help _complete_help_generic _complete_tag \
