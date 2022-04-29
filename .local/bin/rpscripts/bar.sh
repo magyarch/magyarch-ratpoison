@@ -72,17 +72,6 @@ fi
 echo " $vol%"
 
 }
-##############################
-#	    UPGRADES
-##############################
-
-upgrades() {
-	cupd=$(paru -Qu | wc -l)
-    printf "$cupd \n"
-}
-##############################
-#	    KERNEL
-##############################
 
 kernel() {
     kernel="$(uname -r)"
@@ -119,7 +108,7 @@ wifi="$(ip a | grep wlo1 | grep inet | wc -l)"
 
 if [ $wifi = 1 ]; then
     echo "ok"
-else 
+else
     echo "ng"
 fi
 }
@@ -132,12 +121,12 @@ dte(){
 dte2(){
   dte2="$(date +"%H:%M")"
   echo -e "$dte2"
-}  
+}
 
       SLEEP_SEC=0.5
       #loops forever outputting a line every SLEEP_SEC secs
-      while :; do     
-    echo "$(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Updates: $RED$(upgrades)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
+      while :; do
+    echo "$(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
 		sleep $SLEEP_SEC
     done
-	
+
