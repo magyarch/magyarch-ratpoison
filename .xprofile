@@ -4,7 +4,8 @@
 #--------------------------------------------
 
 export GDK_SCALE=2
-bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" &
+#bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" &
+bar.sh &
 xsetroot -cursor_name left_ptr &
 xset r rate 400 30 &	
 unclutter &		

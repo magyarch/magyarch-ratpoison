@@ -9,5 +9,5 @@ then
 else
     #Otherwise, reset the padding to normal and restart dzen2.
     ratpoison -c "set padding 10 42 10 10"
-    sleep 1s && bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" &
+    sleep 1s && bar.sh &
 fi
