@@ -1,13 +1,13 @@
 #!/bin/sh
 
 #Toggle RatPoison's padding
-if ps ax | grep -v grep | grep polybar > /dev/null
+if ps ax | grep -v grep | grep dzen2 > /dev/null
 then
-    #If Trayer is running, kill it and remove RatPoison's padding.
-    killall polybar
+    #If dzen2 is running, kill it and remove RatPoison's padding.
+    pkill -f dzen2
     ratpoison -c "set padding 0 0 0 0"
 else
-    #Otherwise, reset the padding to normal and restart Trayer.
+    #Otherwise, reset the padding to normal and restart dzen2.
     ratpoison -c "set padding 10 42 10 10"
-    sleep 1s && ~/.config/polybar/launch.sh &
+    sleep 1s && bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" &
 fi

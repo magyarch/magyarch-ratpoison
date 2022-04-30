@@ -6,12 +6,11 @@
 
 
 declare options=("alias
-bash
-hlwm
+zsh
+ratpoison
 profile
 vifm
-polybar
-sxhkd
+dzen
 xprofile
 quit")
 
@@ -24,11 +23,11 @@ case "$choice" in
 	alias)
 		choice="$HOME/.config/aliasrc"
 	;;
-	bash)
-		choice="$HOME/.bashrc"
+	zsh)
+		choice="$HOME/.config/zsh/.zshrc"
 	;;
-	hlwm)
-		choice="$HOME/.config/herbstluftwm/autostart"
+	ratpoison)
+		choice="$HOME/.ratpoisonrc"
 	;;
 	profile)
 		choice="$HOME/.profile"
@@ -36,11 +35,8 @@ case "$choice" in
 	vifm)
 		choice="$HOME/.config/vifm/vifmrc"
 	;;
-	polybar)
-		choice="$HOME/.config/polybar/config"
-	;;
-	sxhkd)
-		choice="$HOME/.config/sxhkd/sxhkdrc"
+	dzen)
+		choice="$HOME/.local/bin/rpscripts/bar.sh"
 	;;
 	xprofile)
 		choice="$HOME/.xprofile"

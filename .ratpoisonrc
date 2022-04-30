@@ -50,19 +50,16 @@ escape Super_L
 #----------------------------------
 bind q delete
 bind u undo
-bind z redo
-bind C-a exec toggle_alacritty
+bind s select
 bind c exec cmaster
 bind d exec dmenu_run -i -p 'Search' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font:size=12'
-bind C-Return exec alacritty
 bind R resize
 #bind a exec ratpoison -c "vsplit 1/2" && scratch FM
-bind M-a exec ratpoison -c "set padding 10 42 10 10"
-bind s select
-definekey top C-Tab focus
-definekey top C-b exec toggle-borders && toggle_padding && brave
+
+bind C-a exec toggle_alacritty
+bind C-Return exec alacritty
+bind C-b exec toggle-borders && toggle_padding && brave
 bind C-c exec rofi_run -l
-definekey top C-d exec discord
 bind C-e exec edconf.sh
 bind C-f exec alacritty -e vifm
 bind C-h exec split_and_focus.sh horiz
@@ -70,16 +67,22 @@ bind C-v exec split_and_focus.sh vert
 bind C-k exec ratpoison -c "only" -c "hsplit" -c "vsplit" -c next -c "focusright" 
 bind C-j exec ratpoison -c "only" -c "vsplit" -c "hsplit" -c next -c "focusright"
 bind C-o only
-definekey top  C-m exec spotify --force-device-scale-factor=2
 bind C-t exec toggle_padding
 bind C-r remove
+bind C-q exec ratpoison -c delete -c remove
 bind C-g grid
+bind n cnext
+bind p cprev
 bind C-s exec subl
+
+definekey top C-d exec discord
+definekey top  C-m exec spotify --force-device-scale-factor=2
+definekey top C-Tab focus
+definekey top C-b exec toggle-borders && toggle_padding && brave
 definekey top C-x restart
 definekey top C-q exec ratpoison -c delete -c remove
 definekey top C-w exec brave
 definekey top C-Escape quit
-
 definekey top C-p exec pcmanfm
 
 
@@ -97,6 +100,7 @@ bind F5 exec maimpick
 #bind M-h exec ratpoison -c fdump > $HOME/.rpfdump; ratpoison -c 'select -' -c only
 #bind M-a exec dumporrestore.sh
 #bind M-s exec ratpoison -c "frestore `cat $HOME/.rpfdump`"
+bind M-a exec ratpoison -c "set padding 10 42 10 10"
 bind M-s exec dumporrestore.sh
 bind M-t exec toggle-borders
 bind M-v exec ratpoison -c "vsplit" -c next -c "focusdown" -c next

@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 declare options=("Nemo
-Thunar
+Pcmanfm
 Quit")
 
-choice=$(echo -e "${options[@]}" | dmenu -c -g 1 -l 10 -i -fn 'Roboto Mono' -p 'Open File Cabinet: ' -nb '#3b3b3b' -nf '#71988a' -sb '#000000' -sf '#71988a')
-#choice=$(echo -e "${options[@]}" | rofi -dmenu -p 'Open File Cabinet: ')
+choice=$(echo -e "${options[@]}" | dmenu -i -fn 'JetBrains Mono Nerd Font-12' -p 'Open File Cabinet: ' -nb '#3b3b3b' -nf '#71988a' -sb '#000000' -sf '#71988a')
+#choice=$(echo -e "${options[@]}" | rofi -dmenu -p 'Open File: ')
 
 case "$choice" in
     quit)
@@ -14,9 +14,10 @@ case "$choice" in
     Nemo)
         choice="nemo"
     ;;
-    Thunar)
-        choice="thunar"
+    Pcmanfm)
+        choice="pcmanfm"
     ;;
 esac
+
 "$choice"
 
