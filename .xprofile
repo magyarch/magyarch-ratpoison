@@ -3,12 +3,11 @@
 # AUTOSTART
 #--------------------------------------------
 
-export GDK_SCALE=2
-#bar.sh | dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" &
+#export GDK_SCALE=2
 bar.sh &
 xsetroot -cursor_name left_ptr &
-xset r rate 400 30 &	
-unclutter &		
+xset r rate 400 30 &
+unclutter &
 xset s off -dpms &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 picom --experimental-backends &
