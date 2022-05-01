@@ -17,23 +17,14 @@ MAGENTA="^fg(#CAA9FA)^bg()"
 CLEAN="^fg()^bg()"
 
 xwin(){
-xwindow=$(echo "Active Window: $GREEN`echo $(xdotool getwindowfocus getwindowclassname)`$CLEAN")
-echo -e "$xwindow"
+  xwindow=$(echo "Active Window: $GREEN`echo $(xdotool getwindowfocus getwindowclassname)`$CLEAN")
+  echo -e "$xwindow"
 
 }
 
 work(){
-workspaces=`ratpoison -c "groups"`
-while read name; do
-    if [[ "$name" =~ "*" ]]
-    then
-        selected=`echo $name |cut -c 3-`
-    else
-        notselected=`echo $name | cut -c 3-`
-    fi
-    done
-
-    echo -e "$selected"
+  workspaces=`exec rpws "current"`
+  echo -e "$workspaces"
 
 }
 
@@ -123,10 +114,10 @@ dte2(){
   echo -e "$dte2"
 }
 
-      SLEEP_SEC=0.5
+      SLEEP_SEC=0.25
       #loops forever outputting a line every SLEEP_SEC secs
       while :; do
-    echo "$(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
+    echo "$(work)| $(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
 		sleep $SLEEP_SEC
     done|dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" 
 
