@@ -15,6 +15,7 @@ export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 export VISUAL="nvim"
+export MUSIC="spotify --force-device-scale-factor=2"
 
 
 # less/man colors

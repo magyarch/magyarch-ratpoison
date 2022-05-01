@@ -39,7 +39,7 @@ set resizeunit 10
 set border 3
 set barborder 3
 set barinpadding 0
-set padding 10 42 10 10
+set padding 0 28 0 0
 set bargravity sw
 set font "JetBrains Mono Nerd Font:size=12:antialias=true"
 set bgcolor #000000
@@ -61,15 +61,42 @@ escape Super_L
 # KEYBINDS (remove)
 #----------------------------------
 unbind a
+unbind A
+unbind C-A
+unbind b 
+unbind C-b
+unbind i
+unbind l
+unbind C-l
+unbind K 
+unbind C-K
+unbind r
+unbind p
+unbind C-p
+unbind s 
+unbind S 
+unbind C-S
+unbind n
+unbind C-n
+unbind u
+unbind C-u
 unbind f
 unbind Return
 unbind C-Return
+unbind x
+unbind C-x
+unbind w 
+unbind C-V
+unbind v
 
 
-# KEYBINDS (after win keypress)
+# MAGYARCH KEYBINDS (after win keypress)
 #----------------------------------
+# Open terminal
+bind Return exec $TERMINAL
+
 # Open browser
-bind b exec brave
+bind w exec $BROWSER
 
 # Toggle fullscreen
 bind f exec toggle-borders && toggle_padding
@@ -77,42 +104,54 @@ bind f exec toggle-borders && toggle_padding
 # Open dmenu app launcher
 bind d exec dmenu_run -i -p 'Search' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font:size=12'
 
+# Open TUI filemanager
+bind r exec $TERMINAL -e $FILE
+
 # Resize frame
 bind R resize
 #bind a exec ratpoison -c "vsplit 1/2" && scratch FM
 
+# Open editor
+bind E exec subl
+
+# Open gui filemanager
+bind P exec pcmanfm
+
+# Open discord
+bind p exec discord
+
 # Undo command
-bind u undo
+bind U undo
+
+# Swap windows
+bind S swap
+
+# Open music
+bind m exec $MUSIC
+
+# Grid layout
+bind g grid
+
+# Next window in fullscreen mode
+bind n next
+
+# Only one focused window 
+bind o only
+
+# Split windows vertical
+bind h exec split_and_focus.sh vert
+
+# Split windows horizontal
+bind v exec split_and_focus.sh horiz
 
 
 # LEFT CTRL KEYBINDS (after win keypress)
 #----------------------------------
-# Open terminal
-bind C-a exec alacritty
-
 # Open powermenu
 bind C-c exec rofi_run -l
 
-# Open TUI filemanager
-bind C-f exec alacritty -e vifm
-
-# Split windows vertical
-bind C-h exec split_and_focus.sh horiz
-
-# Split windows horizontal
-bind C-v exec split_and_focus.sh vert
-
-# Swap windows vertical
-bind C-k exec ratpoison -c "only" -c "hsplit" -c next -c "focusright"
-
-# Swap windows horizontal 
-bind C-j exec ratpoison -c "only" -c "vsplit" -c next -c "focusright"
-
 # Only one focused window 
 bind C-o only
-
-# Undo commands
-bind C-u undo
 
 # Back to default padding
 bind C-t exec toggle_padding
@@ -123,29 +162,18 @@ bind C-r remove
 # Kill/Remove selected window/frame
 bind C-q exec ratpoison -c delete -c remove
 
-# Grid layout
-bind C-g grid
-
-# Next window in fullscreen mode
-bind n next
-
-# Previous window in fullscreen mode
-#bind p cprev
-
 # Open sublime-text
 bind C-s exec subl
 
 
 # LEFT CTRL KEYBINDS (no win keypress)
 #------------------------------------
-definekey top C-Return exec alacritty
+definekey top C-Return exec $TERMINAL
 definekey top C-d exec discord
-definekey top  C-m exec spotify --force-device-scale-factor=2
 definekey top C-Tab focus
-definekey top C-b exec toggle-borders && toggle_padding && brave
 definekey top C-x restart
 definekey top C-q exec ratpoison -c delete -c remove
-definekey top C-w exec brave
+definekey top C-w exec $BROWSER
 definekey top C-Escape quit
 definekey top C-p exec pcmanfm
 
