@@ -1,7 +1,3 @@
-#               PROJECT NAME: RatpoisonWM
-#------------------------------------------------------------------------------
-
-
 # AUTOSTART
 #--------------------------------------------
 
@@ -36,10 +32,10 @@ set winfmt %n%s%t
 set framefmt %t
 set infofmt (%H, %W) %n(%c - %a) -- PID: %p, XWID: %i
 set resizeunit 10
-set border 3
+set border 5
 set barborder 3
 set barinpadding 0
-set padding 0 28 0 0
+set padding 0 32 0 0
 set bargravity sw
 set font "JetBrains Mono Nerd Font:size=12:antialias=true"
 set bgcolor #000000
@@ -50,31 +46,30 @@ set bwcolor #000000
 
 # ALIAS
 #----------------------------
-alias grid exec ratpoison -c "select -" -c "only" -c "hsplit" -c next -c "vsplit" -c next -c "focusright" -c next -c "vsplit" -c "next"
 
 
 # ESCAPE KEY (replace key chord C-t with win)
 #---------------------------------------------
 escape Super_L
-
+#escape F13
 
 # KEYBINDS (remove)
 #----------------------------------
 unbind a
 unbind A
 unbind C-A
-unbind b 
+unbind b
 unbind C-b
 unbind i
 unbind l
 unbind C-l
-unbind K 
+unbind K
 unbind C-K
 unbind r
 unbind p
 unbind C-p
-unbind s 
-unbind S 
+unbind s
+unbind S
 unbind C-S
 unbind n
 unbind C-n
@@ -85,7 +80,7 @@ unbind Return
 unbind C-Return
 unbind x
 unbind C-x
-unbind w 
+unbind w
 unbind C-V
 unbind v
 
@@ -102,7 +97,7 @@ bind w exec $BROWSER
 bind f exec toggle-borders && toggle_padding
 
 # Open dmenu app launcher
-bind d exec dmenu_run -i -p 'Search' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font:size=12'
+bind d exec dmenu_run -i -p 'Search' v
 
 # Open TUI filemanager
 bind r exec $TERMINAL -e $FILE
@@ -130,12 +125,12 @@ bind S swap
 bind m exec $MUSIC
 
 # Grid layout
-bind g grid
+bind g exec layout1
 
 # Next window in fullscreen mode
 bind n next
 
-# Only one focused window 
+# Only one focused window
 bind o only
 
 # Split windows vertical
@@ -150,7 +145,7 @@ bind v exec split_and_focus.sh horiz
 # Open powermenu
 bind C-c exec rofi_run -l
 
-# Only one focused window 
+# Only one focused window
 bind C-o only
 
 # Back to default padding
@@ -160,22 +155,16 @@ bind C-t exec toggle_padding
 bind C-r remove
 
 # Kill/Remove selected window/frame
-bind C-q exec ratpoison -c delete -c remove
-
-# Open sublime-text
-bind C-s exec subl
+bind q exec ratpoison -c delete -c remove
 
 
 # LEFT CTRL KEYBINDS (no win keypress)
 #------------------------------------
-definekey top C-Return exec $TERMINAL
-definekey top C-d exec discord
 definekey top C-Tab focus
 definekey top C-x restart
-definekey top C-q exec ratpoison -c delete -c remove
 definekey top C-w exec $BROWSER
 definekey top C-Escape quit
-definekey top C-p exec pcmanfm
+
 
 
 # LEFT CTRL KEYBINDS (no win keypress)
@@ -191,6 +180,15 @@ bind F4 exec import -window root png:$HOME/Képek/Képernyőképek-$(date +%s)$$
 bind F5 exec maimpick
 
 
+#layouts [ ] [|] [|= [-] [+]
+#---------------------------
+definekey top C-F1 exec ratpoison -c "echo Layout 1" -c "select -" -c "only" -c "next"
+definekey top C-F2 exec ratpoison -c "echo Layout 2" -c "select -" -c "only" -c "hsplit" -c "next"
+definekey top C-F3 exec ratpoison -c "echo Layout 3" -c "select -" -c "only" -c "hsplit" -c "next" -c "focusright" -c "next" -c "vsplit" -c "next"
+definekey top C-F4 exec ratpoison -c "echo Layout 4" -c "select -" -c "only" -c "vsplit" -c "next"
+definekey top C-F5 exec ratpoison -c "echo Layout 5" -c "select -" -c "only" -c "hsplit" -c next -c "vsplit" -c next -c "focusright" -c next -c "vsplit" -c "next"
+
+
 # WINDOW MANIPULATION
 #--------------------
 #bind M-h exec ratpoison -c fdump > $HOME/.rpfdump; ratpoison -c 'select -' -c only
@@ -199,10 +197,10 @@ bind F5 exec maimpick
 bind M-a exec ratpoison -c "set padding 10 42 10 10"
 bind M-s exec dumporrestore.sh
 bind M-t exec toggle-borders
-bind M-v exec ratpoison -c "vsplit" -c next -c "focusdown" -c next
-bind M-h exec ratpoison -c "hsplit" -c next -c "focusright" -c next
-bind M-i exec ratpoison -c "hsplit 2/3" -c focusright 
-bind M-o exec ratpoison -c "vsplit 2/3" -c focusright 
+bind M-h exec layout2
+bind M-i exec ratpoison -c "hsplit 2/3" -c focusright
+bind M-o exec ratpoison -c "vsplit 2/3" -c focusright
+definekey top M-w exec ratpoison -c "select `ratpoison -c "windows" | dmenu | awk '{print $1}'`"
 
 
 # Focus

@@ -3,7 +3,8 @@
 # AUTOSTART
 #--------------------------------------------
 
-#export GDK_SCALE=2
+#xmodmap .xmodmaprc
+export GDK_SCALE=2
 bar.sh &
 xsetroot -cursor_name left_ptr &
 xset r rate 400 30 &
@@ -13,6 +14,7 @@ xset s off -dpms &
 picom --experimental-backends &
 #picom --config ~/.config/picom.conf &
 dunst &
-setbg &
+#setbg &
 feh --bg-fill --randomize ~/.local/bin/wallpapers/Future/*
-redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v &
+#redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v &
+
