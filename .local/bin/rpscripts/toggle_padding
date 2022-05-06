@@ -8,6 +8,6 @@ then
     ratpoison -c "set padding 0 0 0 0"
 else
     #Otherwise, reset the padding to normal and restart dzen2.
-    ratpoison -c "set padding 10 42 10 10"
+    ratpoison -c "set padding 0 28 0 0"
     sleep 1s && bar.sh &
 fi

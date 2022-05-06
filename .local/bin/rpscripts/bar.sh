@@ -16,15 +16,11 @@ MAGENTA="^fg(#CAA9FA)^bg()"
 
 CLEAN="^fg()^bg()"
 
+while true; do
+
 xwin(){
   xwindow=$(echo "Active Window: $GREEN`echo $(xdotool getwindowfocus getwindowclassname)`$CLEAN")
   echo -e "$xwindow"
-
-}
-
-work(){
-  workspaces=`exec rpws "current"`
-  echo -e "$workspaces"
 
 }
 
@@ -92,6 +88,7 @@ battery="$(cat /sys/class/power_supply/BAT0/capacity)"
 fi
 
 echo "$batstat  $battery %"
+
 }
 
 network() {
@@ -102,6 +99,7 @@ if [ $wifi = 1 ]; then
 else
     echo "ng"
 fi
+
 }
 
 dte(){
@@ -114,10 +112,29 @@ dte2(){
   echo -e "$dte2"
 }
 
-      SLEEP_SEC=0.25
-      #loops forever outputting a line every SLEEP_SEC secs
-      while :; do
-    echo "$(work)| $(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
-		sleep $SLEEP_SEC
-    done|dzen2 -ta c -w '3840' -h '24' -fn "JetBrains Mono Nerd Font:size=13" -fg "#c3cdc8" -bg "#1a1a1a" 
+work(){
+  #workspaces=`exec rpws current`
+  workspaces=`ratpoison -c "groups"`
+        echo "$workspaces" |
+while read name; do
+    if [[ "$name" =~ "*" ]]
+    then
+        selected=`echo $name | cut -c 3-` 
+        echo -n "^fg(#000000)^bg(#2e8b57) $selected $CLEAN"
+    else
+        notselected=`echo $name | cut -c 3-` 
+        echo -n " $notselected "
+    fi
+
+done
+
+}
+
+SLEEP_SEC=0.3
+
+#loops forever outputting a line every SLEEP_SEC secs
+echo "$RED$(work)$CLEAN | $(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
+sleep $SLEEP_SEC
+
+done | dzen2 -ta c -w '3840' -h '28' -fn "JetBrains Mono Nerd Font:size=12:antialias=true" -fg "#c3cdc8" -bg "#1a1a1a"
 

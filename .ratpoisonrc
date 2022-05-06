@@ -4,7 +4,7 @@
 
 # System
 #------------------------------
-exec /usr/bin/rpws init 6 -k
+#exec /usr/bin/rpws init 6 -k
 
 unmanage dzen2
 unmanage panel
@@ -97,7 +97,7 @@ bind w exec $BROWSER
 bind f exec toggle-borders && toggle_padding
 
 # Open dmenu app launcher
-bind d exec dmenu_run -i -p 'Search' v
+bind d exec dmenu_run -i -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Medium-12'
 
 # Open TUI filemanager
 bind r exec $TERMINAL -e $FILE
@@ -108,6 +108,9 @@ bind R resize
 
 # Open editor
 bind E exec subl
+
+# Open preset layouts
+bind L exec rp_layout.sh
 
 # Open gui filemanager
 bind P exec pcmanfm
@@ -131,7 +134,7 @@ bind g exec layout1
 bind n next
 
 # Only one focused window
-bind o only
+bind o exec ratpoison -c "echo restore" -c "select -" -c "only" -c "next"
 
 # Split windows vertical
 bind h exec split_and_focus.sh vert
@@ -192,15 +195,14 @@ definekey top C-F5 exec ratpoison -c "echo Layout 5" -c "select -" -c "only" -c 
 # WINDOW MANIPULATION
 #--------------------
 #bind M-h exec ratpoison -c fdump > $HOME/.rpfdump; ratpoison -c 'select -' -c only
-#bind M-a exec dumporrestore.sh
 #bind M-s exec ratpoison -c "frestore `cat $HOME/.rpfdump`"
 bind M-a exec ratpoison -c "set padding 10 42 10 10"
 bind M-s exec dumporrestore.sh
 bind M-t exec toggle-borders
-bind M-h exec layout2
-bind M-i exec ratpoison -c "hsplit 2/3" -c focusright
-bind M-o exec ratpoison -c "vsplit 2/3" -c focusright
-definekey top M-w exec ratpoison -c "select `ratpoison -c "windows" | dmenu | awk '{print $1}'`"
+definekey top M-h resize -10  0
+definekey top M-j resize  0 -10
+definekey top M-k resize  0  10
+definekey top M-l resize  10  0
 
 
 # Focus
@@ -221,21 +223,18 @@ bind C-Down exchangedown
 
 # Move windows to next/prev workspaces
 #-------------------------------------
- bind M-n rpwsmn
- bind M-p rpwsmp
+ bind M-n gnext
+ bind M-p gprev
 
 
-# Send window to workspace 1-9
+# Send windows to workspace 1-9
 #-----------------------------
-bind M-1 rpwsm1
-bind M-2 rpwsm2
-bind M-3 rpwsm3
-bind M-4 rpwsm4
-bind M-5 rpwsm5
-bind M-6 rpwsm6
-bind M-7 rpwsm7
-bind M-8 rpwsm8
-bind M-9 rpwsm9
+bind M-1 exec ratpoison -c "gmove 1" -c "select -" -c "only" -c "next" -c "echo web"
+bind M-2 exec ratpoison -c "gmove 2" -c "select -" -c "only" -c "next" -c "echo chat"
+bind M-3 exec ratpoison -c "gmove 3" -c "select -" -c "only" -c "next" -c "echo edit"
+bind M-4 exec ratpoison -c "gmove 4" -c "select -" -c "only" -c "next" -c "echo music"
+bind M-5 exec ratpoison -c "gmove 5" -c "select -" -c "only" -c "next" -c "echo games"
+bind M-6 exec ratpoison -c "gmove 6" -c "select -" -c "only" -c "next" -c "echo video"
 
 
 # Multimedia
@@ -246,25 +245,51 @@ definekey top M-Up exec pamixer --allow-boost -i 5 >/dev/null
 definekey top M-Down exec pamixer --allow-boost -d 5 >/dev/null
 
 
+# Groups
+#----------
+gnew web
+gnewbg chat
+gnewbg edit
+gnewbg music
+gnewbg games
+gnewbg video
+gmerge default
+gdelete default
+
 
 # RPWS (ratpoison workspaces)
 #-----------------------------
-bind 1 exec rpws 1
-bind 2 exec rpws 2
-bind 3 exec rpws 3
-bind 4 exec rpws 4
-bind 5 exec rpws 5
-bind 6 exec rpws 6
-bind 7 exec rpws 7
-bind 8 exec rpws 8
-bind 9 exec rpws 9
-bind C-n exec rpws next
-bind C-p exec rpws prev
+# bind 1 exec gselect web
+# bind 2 exec gselect chat
+# bind 3 exec gselect edit
+# bind 4 exec gselect music
+# bind 5 exec gselect games
+# bind 6 exec gselect video
+
+bind 1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
+bind 2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
+bind 3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
+bind 4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
+bind 5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
+bind 6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
+
 
 
 
 #----------------------------------------------------------------------
 #-------------------------- END ---------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
