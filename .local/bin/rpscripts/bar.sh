@@ -6,6 +6,7 @@
 
 FG="#c3cdc8"
 BG="#1a1a1a"
+WHITE="^fg(#c3cdc8)^bg()"
 GREEN="^fg(#2e8b57)^bg()"
 YELLOW="^fg(#F4F99D)^bg()"
 RED="^fg(#FF6E67)^bg()"
@@ -16,7 +17,7 @@ MAGENTA="^fg(#CAA9FA)^bg()"
 
 CLEAN="^fg()^bg()"
 
-while true; do
+
 
 xwin(){
   xwindow=$(echo "Active Window: $GREEN`echo $(xdotool getwindowfocus getwindowclassname)`$CLEAN")
@@ -120,7 +121,7 @@ while read name; do
     if [[ "$name" =~ "*" ]]
     then
         selected=`echo $name | cut -c 3-` 
-        echo -n "^fg(#000000)^bg(#2e8b57) $selected $CLEAN"
+        echo -n "^fg(#c3cdc8)^bg(#2e8b57) $selected $CLEAN"
     else
         notselected=`echo $name | cut -c 3-` 
         echo -n " $notselected "
@@ -133,8 +134,8 @@ done
 SLEEP_SEC=0.3
 
 #loops forever outputting a line every SLEEP_SEC secs
-echo "$RED$(work)$CLEAN | $(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
+while true; do
+echo " $(work) $CLEAN | $(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
 sleep $SLEEP_SEC
-
 done | dzen2 -ta c -w '3840' -h '28' -fn "JetBrains Mono Nerd Font:size=12:antialias=true" -fg "#c3cdc8" -bg "#1a1a1a"
 

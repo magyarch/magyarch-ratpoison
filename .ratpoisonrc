@@ -31,7 +31,7 @@ set barpadding 2 2
 set winfmt %n%s%t
 set framefmt %t
 set infofmt (%H, %W) %n(%c - %a) -- PID: %p, XWID: %i
-set resizeunit 10
+set resizeunit 30
 set border 5
 set barborder 3
 set barinpadding 0
@@ -116,7 +116,7 @@ bind L exec rp_layout.sh
 bind P exec pcmanfm
 
 # Open discord
-bind p exec discord
+bind p exec && discord
 
 # Undo command
 bind U undo
@@ -126,9 +126,6 @@ bind S swap
 
 # Open music
 bind m exec $MUSIC
-
-# Grid layout
-bind g exec layout1
 
 # Next window in fullscreen mode
 bind n next
@@ -196,13 +193,12 @@ definekey top C-F5 exec ratpoison -c "echo Layout 5" -c "select -" -c "only" -c 
 #--------------------
 #bind M-h exec ratpoison -c fdump > $HOME/.rpfdump; ratpoison -c 'select -' -c only
 #bind M-s exec ratpoison -c "frestore `cat $HOME/.rpfdump`"
-bind M-a exec ratpoison -c "set padding 10 42 10 10"
 bind M-s exec dumporrestore.sh
 bind M-t exec toggle-borders
-definekey top M-h resize -10  0
-definekey top M-j resize  0 -10
-definekey top M-k resize  0  10
-definekey top M-l resize  10  0
+definekey top M-h resize -30 0
+definekey top M-j resize  0 -30
+definekey top M-k resize  0  30
+definekey top M-l resize  30  0
 
 
 # Focus
