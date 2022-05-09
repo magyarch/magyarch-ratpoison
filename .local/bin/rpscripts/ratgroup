@@ -1,6 +1,6 @@
 #!/bin/sh
 
-workspaces=`ratpoison -c "groups"`
+workspaces=`ratpoison -c "groups"` | fzf
 while read name; do
     if [[ "$name" =~ "*" ]]
     then

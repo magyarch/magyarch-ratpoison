@@ -2,16 +2,16 @@
 
 # AUTOSTART
 #--------------------------------------------
-
+xrandr --dpi 156
 #xmodmap .xmodmaprc
-#export GDK_SCALE=2
+export GDK_SCALE=2
 sleep 2s && bar.sh &
 xsetroot -cursor_name left_ptr &
 xset r rate 400 30 &
 unclutter &
 xset s off -dpms &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-picom --experimental-backends &
+picom --config ~/.config/picom.conf &
 #picom --config ~/.config/picom.conf &
 dunst &
 #setbg &

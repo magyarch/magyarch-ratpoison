@@ -6,7 +6,7 @@
 #------------------------------
 #exec /usr/bin/rpws init 6 -k
 
-unmanage dzen2
+unmanage dzen
 unmanage panel
 
 
@@ -23,23 +23,24 @@ unmanage panel
 # SETTINGS
 #--------------------------------
 rudeness 13
-msgwait 3
+#msgwait 6
 warp off
-startup_message off
-set winliststyle column
-set barpadding 2 2
-set winfmt %n%s%t
-set framefmt %t
-set infofmt (%H, %W) %n(%c - %a) -- PID: %p, XWID: %i
-set resizeunit 30
+#startup_message off
+set winname title 
 set border 5
-set barborder 3
-set barinpadding 0
-set padding 0 32 0 0
-set bargravity sw
+set barborder 5
+set barinpadding 1 1
+set barpadding 2 2
+set padding 0 34 0 0
+set onlyborder 0
+set bargravity center
+set wingravity center
+set transgravity center
+set resizeunit 30
+#set inputwidth 800
 set font "JetBrains Mono Nerd Font:size=12:antialias=true"
 set bgcolor #000000
-set fgcolor #477d8f
+set fgcolor #2e8b57
 set fwcolor #2e8b57
 set bwcolor #000000
 
@@ -51,7 +52,7 @@ set bwcolor #000000
 # ESCAPE KEY (replace key chord C-t with win)
 #---------------------------------------------
 escape Super_L
-#escape F13
+
 
 # KEYBINDS (remove)
 #----------------------------------
@@ -94,10 +95,10 @@ bind Return exec $TERMINAL
 bind w exec $BROWSER
 
 # Toggle fullscreen
-bind f exec toggle-borders && toggle_padding
+bind f exec toggle_padding; toggle_borders
 
 # Open dmenu app launcher
-bind d exec dmenu_run -i -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Medium-12'
+bind d exec dmenu_run -i -c -g 1 -l 10 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
 
 # Open TUI filemanager
 bind r exec $TERMINAL -e $FILE
@@ -116,7 +117,7 @@ bind L exec rp_layout.sh
 bind P exec pcmanfm
 
 # Open discord
-bind p exec && discord
+bind p exec discord
 
 # Undo command
 bind U undo
@@ -134,10 +135,13 @@ bind n next
 bind o exec ratpoison -c "echo restore" -c "select -" -c "only" -c "next"
 
 # Split windows vertical
-bind h exec split_and_focus.sh vert
+bind h exec split_and_focus.sh horiz
 
 # Split windows horizontal
-bind v exec split_and_focus.sh horiz
+bind v exec split_and_focus.sh vert
+
+# Kill/Remove selected window/frame
+bind q exec ratpoison -c delete -c remove
 
 
 # LEFT CTRL KEYBINDS (after win keypress)
@@ -154,9 +158,6 @@ bind C-t exec toggle_padding
 # Remove focused(selected) frame
 bind C-r remove
 
-# Kill/Remove selected window/frame
-bind q exec ratpoison -c delete -c remove
-
 
 # LEFT CTRL KEYBINDS (no win keypress)
 #------------------------------------
@@ -166,8 +167,7 @@ definekey top C-w exec $BROWSER
 definekey top C-Escape quit
 
 
-
-# LEFT CTRL KEYBINDS (no win keypress)
+# LEFT ALTKEYBINDS (no win keypress)
 #------------------------------------
 definekey top M-Tab next
 
@@ -176,11 +176,13 @@ definekey top M-Tab next
 #--------------
 bind F1 help
 bind F2 exec edconf.sh
+bind F3 exec dmenurecord
 bind F4 exec import -window root png:$HOME/Képek/Képernyőképek-$(date +%s)$$.png
 bind F5 exec maimpick
+bind F6 exec live.sh
 
 
-#layouts [ ] [|] [|= [-] [+]
+# Layouts [ ] [|] [|= [-] [+]
 #---------------------------
 definekey top C-F1 exec ratpoison -c "echo Layout 1" -c "select -" -c "only" -c "next"
 definekey top C-F2 exec ratpoison -c "echo Layout 2" -c "select -" -c "only" -c "hsplit" -c "next"
@@ -194,7 +196,7 @@ definekey top C-F5 exec ratpoison -c "echo Layout 5" -c "select -" -c "only" -c 
 #bind M-h exec ratpoison -c fdump > $HOME/.rpfdump; ratpoison -c 'select -' -c only
 #bind M-s exec ratpoison -c "frestore `cat $HOME/.rpfdump`"
 bind M-s exec dumporrestore.sh
-bind M-t exec toggle-borders
+bind M-t exec toggle_borders
 definekey top M-h resize -30 0
 definekey top M-j resize  0 -30
 definekey top M-k resize  0  30
@@ -217,6 +219,36 @@ bind C-Up exchangeup
 bind C-Down exchangedown
 
 
+# Groups
+#----------
+gnew web
+gnewbg chat
+gnewbg edit
+gnewbg music
+gnewbg games
+gnewbg video
+gmerge default
+gdelete default
+
+
+
+# RPWS (ratpoison workspaces)
+#-----------------------------
+# bind 1 gselect 1
+# bind 2 gselect 2
+# bind 3 gselect 3
+# bind 4 gselect 4
+# bind 5 gselect 5
+# bind 6 gselect 6
+
+bind 1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
+bind 2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
+bind 3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
+bind 4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
+bind 5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
+bind 6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
+
+
 # Move windows to next/prev workspaces
 #-------------------------------------
  bind M-n gnext
@@ -232,6 +264,13 @@ bind M-4 exec ratpoison -c "gmove 4" -c "select -" -c "only" -c "next" -c "echo 
 bind M-5 exec ratpoison -c "gmove 5" -c "select -" -c "only" -c "next" -c "echo games"
 bind M-6 exec ratpoison -c "gmove 6" -c "select -" -c "only" -c "next" -c "echo video"
 
+# bind M-1 gmove 1
+# bind M-2 gmove 2
+# bind M-3 gmove 3
+# bind M-4 gmove 4
+# bind M-5 gmove 5
+# bind M-6 gmove 6
+
 
 # Multimedia
 #--------------------
@@ -241,33 +280,7 @@ definekey top M-Up exec pamixer --allow-boost -i 5 >/dev/null
 definekey top M-Down exec pamixer --allow-boost -d 5 >/dev/null
 
 
-# Groups
-#----------
-gnew web
-gnewbg chat
-gnewbg edit
-gnewbg music
-gnewbg games
-gnewbg video
-gmerge default
-gdelete default
 
-
-# RPWS (ratpoison workspaces)
-#-----------------------------
-# bind 1 exec gselect web
-# bind 2 exec gselect chat
-# bind 3 exec gselect edit
-# bind 4 exec gselect music
-# bind 5 exec gselect games
-# bind 6 exec gselect video
-
-bind 1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
-bind 2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
-bind 3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
-bind 4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
-bind 5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
-bind 6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
 
 
 

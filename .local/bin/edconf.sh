@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 
 
@@ -14,7 +14,7 @@ dzen
 xprofile
 quit")
 
-choice=$(echo -e "${options[@]}" | rofi -dmenu -i -no-custom -p 'Konfigfájlok szerkesztése: ')
+choice=$(echo -e "${options[@]}" | dmenu -i -c -g 1 -l 20 -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12' -p 'Konfigfájlok szerkesztése: ')
 
 case "$choice" in
 	quit)

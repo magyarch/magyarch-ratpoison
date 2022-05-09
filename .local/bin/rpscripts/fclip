@@ -1,3 +1,0 @@
-#!/bin/sh
-
-bat /tmp/tmpclipboard.txt | fzf | xclip -sel c
