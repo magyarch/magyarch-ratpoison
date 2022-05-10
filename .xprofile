@@ -2,9 +2,9 @@
 
 # AUTOSTART
 #--------------------------------------------
-xrandr --dpi 156
+#xrandr --dpi 156
 #xmodmap .xmodmaprc
-export GDK_SCALE=2
+#export GDK_SCALE=2
 sleep 2s && bar.sh &
 xsetroot -cursor_name left_ptr &
 xset r rate 400 30 &
