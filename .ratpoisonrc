@@ -26,7 +26,7 @@ rudeness 13
 #msgwait 6
 warp off
 #startup_message off
-set winname title 
+set winname title
 set border 5
 set barborder 5
 set barinpadding 1 1
@@ -52,7 +52,7 @@ set bwcolor #000000
 # ESCAPE KEY (replace key chord C-t with win)
 #---------------------------------------------
 escape Super_L
-
+#escape F13
 
 # KEYBINDS (remove)
 #----------------------------------
@@ -94,11 +94,14 @@ bind Return exec $TERMINAL
 # Open browser
 bind w exec $BROWSER
 
+bind W exec ratpoison -c "select $(ratpoison -c "prompt $(ratpoison -c "windows (%n)%a" | sed -z 's/\n/ | /g'):")" &
+
 # Toggle fullscreen
 bind f exec toggle_padding; toggle_borders
 
 # Open dmenu app launcher
-bind d exec dmenu_run -i -c -g 1 -l 10 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
+#bind d exec dmenu_run -i -c -g 1 -h 20 -l 20 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
+bind d exec $TERMINAL -e flaunch.sh
 
 # Open TUI filemanager
 bind r exec $TERMINAL -e $FILE
@@ -141,7 +144,15 @@ bind h exec split_and_focus.sh horiz
 bind v exec split_and_focus.sh vert
 
 # Kill/Remove selected window/frame
-bind q exec ratpoison -c delete -c remove
+bind q exec ratpoison -c delete
+
+# Choose groups
+bind G exec rp_groups.sh
+
+# kill ffmpeg
+definekey top M-x exec stop_live.sh
+
+#bind g exec ratpoison -c "gselect" -c "select -" -c "only" -c "next" -c "echo $(ratpoison -c "prompt $(ratpoison -c groups | cut -c 2-20 | sed 's//()/g' | sed 's/+/(+)/g' | sed 's/-/(-)/g' | sed -z 's/\n/ | /g'):")" &
 
 
 # LEFT CTRL KEYBINDS (after win keypress)
@@ -234,12 +245,12 @@ gdelete default
 
 # RPWS (ratpoison workspaces)
 #-----------------------------
-# bind 1 gselect 1
-# bind 2 gselect 2
-# bind 3 gselect 3
-# bind 4 gselect 4
-# bind 5 gselect 5
-# bind 6 gselect 6
+# bind 1 exec rpws 1
+# bind 2 exec rpws 2
+# bind 3 exec rpws 3
+# bind 4 exec rpws 4
+# bind 5 exec rpws 5
+# bind 6 exec rpws 6
 
 bind 1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
 bind 2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
@@ -276,8 +287,8 @@ bind M-6 exec ratpoison -c "gmove 6" -c "select -" -c "only" -c "next" -c "echo 
 #--------------------
 # bind XF86MonBrightnessUp exec lux -a 10%
 # bind XF86MonBrightnessDown exec lux -s 10%
-definekey top M-Up exec pamixer --allow-boost -i 5 >/dev/null
-definekey top M-Down exec pamixer --allow-boost -d 5 >/dev/null
+definekey top M-Up exec pamixer --allow-boost -i 10 >/dev/null
+definekey top M-Down exec pamixer --allow-boost -d 10 >/dev/null
 
 
 
