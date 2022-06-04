@@ -52,8 +52,8 @@ set bwcolor #000000
 
 # ESCAPE KEY (replace key chord C-t with win)
 #---------------------------------------------
-#escape Super_L
-escape F13
+escape Super_L
+#escape F13
 
 # KEYBINDS (remove)
 #----------------------------------
@@ -154,7 +154,7 @@ bind v exec split_and_focus.sh vert
 
 
 # Kill/Remove selected window/frame
-bind q exec ratpoison -c delete 
+bind q exec ratpoison -c delete
 definekey top s-Q exec ratpoison -c delete -c remove
 
 # Choose groups
