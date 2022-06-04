@@ -1,6 +1,10 @@
 # AUTOSTART
 #--------------------------------------------
 
+# ALTKEY="M"
+# WINKEY aka SUPER="s"
+# LEFT_CTRL="C"
+
 
 # System
 #------------------------------
@@ -16,7 +20,7 @@ unmanage panel
 #exec ratpoison -c "banish"
 
 
-# Focus follow mouse (bad behavior with picom compozitor)
+# Focus follow mouse (bad behavior with ratpoison)
 #exec /usr/share/ratpoison/sloppy
 
 
@@ -24,20 +28,17 @@ unmanage panel
 #--------------------------------
 rudeness 13
 #msgwait 6
-warp off
+warp on
 #startup_message off
 set winname title
 set border 5
-set barborder 5
-set barinpadding 1 1
-set barpadding 2 2
+#set barborder 5
+#set barinpadding 1 1
+#set barpadding 2 2
 set padding 0 34 0 0
-set onlyborder 0
-set bargravity center
 set wingravity center
 set transgravity center
-set resizeunit 30
-#set inputwidth 800
+set inputwidth 2000
 set font "JetBrains Mono Nerd Font:size=12:antialias=true"
 set bgcolor #000000
 set fgcolor #2e8b57
@@ -51,8 +52,8 @@ set bwcolor #000000
 
 # ESCAPE KEY (replace key chord C-t with win)
 #---------------------------------------------
-escape Super_L
-#escape F13
+#escape Super_L
+escape F13
 
 # KEYBINDS (remove)
 #----------------------------------
@@ -90,9 +91,11 @@ unbind v
 #----------------------------------
 # Open terminal
 bind Return exec $TERMINAL
+#definekey top s-Return exec $TERMINAL
 
 # Open browser
 bind w exec $BROWSER
+#definekey top s-w exec $BROWSER
 
 bind W exec ratpoison -c "select $(ratpoison -c "prompt $(ratpoison -c "windows (%n)%a" | sed -z 's/\n/ | /g'):")" &
 
@@ -100,11 +103,12 @@ bind W exec ratpoison -c "select $(ratpoison -c "prompt $(ratpoison -c "windows 
 bind f exec toggle_padding; toggle_borders
 
 # Open dmenu app launcher
-#bind d exec dmenu_run -i -c -g 1 -h 20 -l 20 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
-bind d exec $TERMINAL -e flaunch.sh
+bind d exec dmenu_run -i -c -g 1 -h 20 -l 20 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
+#definekey top  Hyper_Ld-d exec ratpoison -d :0.0 -c "echo `date +'%r - %A %n    %D - %B'`  `cal | tail -n +2 | sed -e 's/^Su/\n\n Su/' -e 's/.*/ & /' -e \"s/\ $(date +%e)\ /\<$(date +%e)\>/\"`"
 
 # Open TUI filemanager
 bind r exec $TERMINAL -e $FILE
+#definekey top s-r exec $TERMINAL -e $FILE
 
 # Resize frame
 bind R resize
@@ -112,6 +116,7 @@ bind R resize
 
 # Open editor
 bind E exec subl
+#definekey top s-E exec subl
 
 # Open preset layouts
 bind L exec rp_layout.sh
@@ -127,6 +132,7 @@ bind U undo
 
 # Swap windows
 bind S swap
+#definekey top s-S swap
 
 # Open music
 bind m exec $MUSIC
@@ -139,12 +145,17 @@ bind o exec ratpoison -c "echo restore" -c "select -" -c "only" -c "next"
 
 # Split windows vertical
 bind h exec split_and_focus.sh horiz
+#definekey top s-h exec split_and_focus.sh horiz
+
 
 # Split windows horizontal
 bind v exec split_and_focus.sh vert
+#definekey top s-v exec split_and_focus.sh vert
+
 
 # Kill/Remove selected window/frame
-bind q exec ratpoison -c delete
+bind q exec ratpoison -c delete 
+definekey top s-Q exec ratpoison -c delete -c remove
 
 # Choose groups
 bind G exec rp_groups.sh
@@ -159,6 +170,9 @@ definekey top M-x exec stop_live.sh
 #----------------------------------
 # Open powermenu
 bind C-c exec rofi_run -l
+
+# --------------------------------
+definekey top s-c exec rofi_run -l
 
 # Only one focused window
 bind C-o only
@@ -211,8 +225,7 @@ bind M-t exec toggle_borders
 definekey top M-h resize -30 0
 definekey top M-j resize  0 -30
 definekey top M-k resize  0  30
-definekey top M-l resize  30  0
-
+definekey top M-l resize  30  30
 
 # Focus
 #--------------------
@@ -228,6 +241,13 @@ bind C-Left exchangeleft
 bind C-Right exchangeright
 bind C-Up exchangeup
 bind C-Down exchangedown
+
+
+#definekey top s-Left exchangeleft
+#definekey top s-Right exchangeright
+#definekey top s-Up exchangeup
+#definekey top s-Down exchangedown
+
 
 
 # Groups
@@ -258,6 +278,13 @@ bind 3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo 
 bind 4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
 bind 5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
 bind 6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
+
+#definekey top s-1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
+#definekey top s-2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
+#definekey top s-3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
+#definekey top s-4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
+#definekey top s-5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
+#definekey top s-6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
 
 
 # Move windows to next/prev workspaces
