@@ -1,5 +1,26 @@
 # AUTOSTART
 #--------------------------------------------
+exec xmodmap .xmodmaprc
+#export GDK_SCALE=2
+exec sleep 2s && bar.sh &
+#~/.config/polybar/launch.sh &
+exec xsetroot -cursor_name left_ptr
+exec xset r rate 400 30
+exec unclutter
+exec udiskie
+exec xset s off -dpms
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#(sleep 1s && picom --experimental-backend --shadow-exclude-reg '1920+0-0' --inactive-opacity 1.00  --opacity-rule "85:class_g ='urxvt'" --opacity-rule "80:class_g = 'rofi'" --opacity-rule "90:class_g = 'Alacritty'" --blur-background-exclude n:a:slop -CGfF -o 0.70 -O 0.028 -I 0.028 -t 0 -l 0 -r 7 -D2 -m 1.00) &
+pkill picom
+exec picom -b --config ~/.config/picom.conf --experimental-backends
+exec dunst
+#setbg &
+#feh --bg-fill --randomize ~/.local/bin/wallpapers/Future/*
+#pkill redshift
+#exec redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v
+pkill -f change_background
+exec change_background
+
 
 # ALTKEY="M"
 # WINKEY aka SUPER="s"
@@ -28,8 +49,8 @@ unmanage panel
 #--------------------------------
 rudeness 13
 #msgwait 6
-warp on
-#startup_message off
+warp off
+startup_message 0
 set winname title
 set border 5
 #set barborder 5
@@ -93,6 +114,12 @@ unbind v
 bind Return exec $TERMINAL
 #definekey top s-Return exec $TERMINAL
 
+# Start alacritty with tabs
+definekey top s-T exec wmctrl -x -a "tabbed" || tabbed alacritty --embed
+
+# Start tmux with alacritty
+bind A exec wmctrl -x -a "alacritty" || alacritty -e tmux
+
 # Open browser
 bind w exec $BROWSER
 #definekey top s-w exec $BROWSER
@@ -103,7 +130,7 @@ bind W exec ratpoison -c "select $(ratpoison -c "prompt $(ratpoison -c "windows 
 bind f exec toggle_padding; toggle_borders
 
 # Open dmenu app launcher
-bind d exec dmenu_run -i -c -g 1 -h 20 -l 20 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
+bind d exec dmenu_run -i -c -g 3 -l 10 -p 'Run' -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
 #definekey top  Hyper_Ld-d exec ratpoison -d :0.0 -c "echo `date +'%r - %A %n    %D - %B'`  `cal | tail -n +2 | sed -e 's/^Su/\n\n Su/' -e 's/.*/ & /' -e \"s/\ $(date +%e)\ /\<$(date +%e)\>/\"`"
 
 # Open TUI filemanager
