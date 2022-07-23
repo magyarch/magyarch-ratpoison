@@ -42,7 +42,13 @@ mem(){
 
 }
 
-vol() {
+mhdd(){
+    mhdd="$(df -h "/home" | awk ' /[0-9]/ {print $3 "/" $2}')"
+    mhdd2="$(df -h "/mnt" | awk ' /[0-9]/ {print $3 "/" $2}')"
+    echo " $mhdd  $mhdd2"
+}
+
+vol(){
 	vol="$(pamixer --get-volume)"
 
 if [ "$vol" -gt "70" ]; then
@@ -133,7 +139,7 @@ SLEEP_SEC=0.3
 
 #loops forever outputting a line every SLEEP_SEC secs
 while true; do
-echo " $(work) $CLEAN "
+echo "$(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | M.2: $RED$(mhdd)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
 sleep $SLEEP_SEC
-done | dzen2 -ta c -w '1920' -h '24' -fn "JetBrains Mono Nerd Font:size=11:antialias=true" -fg "#c3cdc8" -bg "#000000"
+done | dzen2 -y '1920' -h 24 -fn "JetBrains Mono Nerd Font:size=11:antialias=true" -fg "#c3cdc8" -bg "#000000" 
 
