@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IF_HERB=`pgrep sowm`
+
+if [ -n "$IF_HERB" ]; then
+    killall sowm
+
+else
+   ratpoison -c "tmpwm sowm"
+
+fi

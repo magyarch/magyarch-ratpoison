@@ -138,6 +138,6 @@ SLEEP_SEC=0.2
 while true; do
    echo "$(work)$CLEAN"
 sleep $SLEEP_SEC
-done | dzen2 -ta c -w "1920" -h "22" -fn "JetBrains Mono Nerd Font:size=10:antialias=true" -fg "#000000" -bg "#e6e6e6"
+done | dzen2 -ta c -w "3840" -h "22" -fn "JetBrains Mono Nerd Font:size=10:antialias=true" -fg "#000000" -bg "#e6e6e6"
 
 

@@ -18,7 +18,7 @@ CLEAN="^fg()^bg()"
 
 
 xwin(){
-  xwindow=$(echo "Active Window: $GREEN`echo $(xdotool getwindowfocus getwindowclassname)`$CLEAN")
+  xwindow=$(echo "Windows: $GREEN`echo $(xdotool getwindowfocus getwindowclassname)`$CLEAN")
   echo -e "$xwindow"
 
 }
@@ -139,7 +139,7 @@ SLEEP_SEC=0.3
 
 #loops forever outputting a line every SLEEP_SEC secs
 while true; do
-echo "$(xwin)  Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | M.2: $RED$(mhdd)$CLEAN | Wheater: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
+echo "M.2: $RED$(mhdd)$CLEAN"
 sleep $SLEEP_SEC
-done | dzen2 -y '1920' -h 24 -fn "JetBrains Mono Nerd Font:size=11:antialias=true" -fg "#c3cdc8" -bg "#000000" 
+done | dzen2 -ta -c -y '5490' -h 28 -fn "JetBrains Mono Nerd Font:size=12:antialias=true" -fg "#c3cdc8" -bg "#000000" 
 

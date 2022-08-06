@@ -132,6 +132,12 @@ alias noblogout="sudo nano /etc/oblogout.conf"
 alias nmirrorlist="sudo nano /etc/pacman.d/mirrorlist"
 alias nconfgrub="sudo nano /boot/grub/grub.cfg"
 
+alias chill='mpv --force-window=no --no-video "https://www.youtube.com/user/Chillhopdotcom/live"'
+alias mpvplay='mpv --no-border'
+alias ytflac='youtube-dl -x --audio-format flac --audio-quality 0 -o "~/Zenék/%(uploader)s/%(title)s.%(ext)s"'
+alias webcam='devour mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:/dev/video0'
+
+
 #gpg
 #verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
