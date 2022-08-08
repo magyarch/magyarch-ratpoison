@@ -2,8 +2,8 @@
 
 # AUTOSTART
 #--------------------------------------------
-xrandr --dpi 144
-export GDK_SCALE=2
+#xrandr --dpi 144
+#export GDK_SCALE=2
 #sxhkd &
 #sxhkd -c ~/.config/i3/sxhkdrc &
 xmodmap .xmodmaprc
@@ -21,6 +21,6 @@ dunst &
 #feh --bg-fill --randomize ~/.local/bin/wallpapers/Future/*
 #redshift -l 47.162495:19.503304 -t 6000:3600 -g 0.8 -m randr -v &
 udiskie -a &
-xwal.sh &
-xrandr --output HDMI-0 --scale 2x2 --mode 1920x1080 --rotate left --output DP-0 --mode 3840x2160 --pos 3840x0 &
+#xwal.sh &
+#xrandr --output HDMI-0 --scale 2x2 --mode 1920x1080 --rotate left --output DP-0 --mode 3840x2160 --pos 3840x0 &
 
