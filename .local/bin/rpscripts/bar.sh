@@ -124,10 +124,10 @@ work(){
 while read name; do
     if [[ "$name" =~ "*" ]]
     then
-        selected=`echo $name | cut -c 3-` 
+        selected=`echo $name | cut -c 3-`
         echo -n "^fg(#c3cdc8)^bg(#2e8b57) $selected $CLEAN"
     else
-        notselected=`echo $name | cut -c 3-` 
+        notselected=`echo $name | cut -c 3-`
         echo -n " $notselected "
     fi
 
@@ -141,5 +141,5 @@ SLEEP_SEC=0.3
 while true; do
 echo "$(work)$CLEAN | $GREEN$(xwin)$CLEAN | Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | M.2: $RED$(mhdd)$CLEAN | Wtr: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
 sleep $SLEEP_SEC
-done | dzen2 -w '7350' -ta r -h '28' -fn "JetBrains Mono Nerd Font:size=12:antialias=true" -fg "#c3cdc8" -bg "#000000"
+done | dzen2 -w '1920' -ta r -h '24' -fn "JetBrains Mono Nerd Font:size=12:antialias=true" -fg "#c3cdc8" -bg "#000000"
 

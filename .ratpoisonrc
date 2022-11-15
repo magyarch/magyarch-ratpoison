@@ -67,7 +67,7 @@ rudeness 15
 warp off
 startup_message on
 
-set padding 0 34 0 0
+set padding 0 26 0 0
 set winname title
 set border 3
 
