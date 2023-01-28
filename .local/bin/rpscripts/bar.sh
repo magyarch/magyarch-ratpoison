@@ -3,7 +3,7 @@
 trap 'update' 5
 
 FG="#c3cdc8"
-BG="#000000"
+BG="#282a36"
 WHITE="^fg(#c3cdc8)^bg()"
 GREEN="^fg(#2e8b57)^bg()"
 YELLOW="^fg(#F4F99D)^bg()"
@@ -12,13 +12,14 @@ WHITE="^fg(#E6E6E6)^bg()"
 PINK="^fg(#FF92D0)^bg()"
 BLUE="^fg(#477d8f)^bg()"
 MAGENTA="^fg(#CAA9FA)^bg()"
+DRACULA="^fg(#bd93f9)^bg()"
 
 CLEAN="^fg()^bg()"
 
 
 mhdd(){
     mhdd="$(df -h "/home" | awk ' /[0-9]/ {print $3 "/" $2}')"
-    mhdd2="$(df -h "/mnt" | awk ' /[0-9]/ {print $3 "/" $2}')"
+    mhdd2="$(df -h "/mnt/" | awk ' /[0-9]/ {print $3 "/" $2}')"
     echo " $mhdd  $mhdd2"
 }
 
@@ -37,8 +38,8 @@ wtr(){
 }
 
 temp(){
-  #temp="$(sensors | awk '/^Tdie:/ {print $2}')"
-  temp="$(sensors | awk '/Core 0/ {print $3}')"
+  temp="$(sensors | awk '/^Tctl:/ {print $2}')"
+  #temp="$(sensors | awk '/Core 0/ {print $3}')"
   echo -e "ﴦ $temp"
 }
 
@@ -125,7 +126,7 @@ while read name; do
     if [[ "$name" =~ "*" ]]
     then
         selected=`echo $name | cut -c 3-`
-        echo -n "^fg(#c3cdc8)^bg(#2e8b57) $selected $CLEAN"
+        echo -n "^fg(#c3cdc8)^bg(#bd93f9) $selected $CLEAN"
     else
         notselected=`echo $name | cut -c 3-`
         echo -n " $notselected "
@@ -135,11 +136,11 @@ done
 
 }
 
-SLEEP_SEC=0.3
+SLEEP_SEC=0.5
 
 #loops forever outputting a line every SLEEP_SEC secs
 while true; do
-echo "$(work)$CLEAN | $GREEN$(xwin)$CLEAN | Info: $MAGENTA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | M.2: $RED$(mhdd)$CLEAN | Wtr: $PINK$(wtr)$CLEAN | Kernel: $YELLOW$(kernel)$CLEAN | Date: $GREEN$(dte) $(dte2)$CLEAN | Volume: $(vol)"
+echo "$(work)$CLEAN | $GREEN$(xwin)$CLEAN | Info: $DRACULA$(temp)$CLEAN | Ram: $YELLOW$(mem)$CLEAN | M.2: $BLUE$(mhdd)$CLEAN | Wtr: $GREEN$(wtr)$CLEAN | Date: $DRACULA$(dte) $(dte2)$CLEAN | Volume: $PINK$(vol)$CLEAN"
 sleep $SLEEP_SEC
-done | dzen2 -w '1920' -ta r -h '24' -fn "JetBrains Mono Nerd Font:size=12:antialias=true" -fg "#c3cdc8" -bg "#000000"
+done | dzen2 -w '1920' -ta c -h '23' -y 1 -fn "JetBrains Mono Nerd Font:size=10:antialias=true" -fg "#c3cdc8" -bg "#282a36"
 

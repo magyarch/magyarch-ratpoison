@@ -67,9 +67,9 @@ rudeness 15
 warp off
 startup_message on
 
-set padding 0 26 0 0
+set padding 15 46 15 15
 set winname title
-set border 3
+set border 8
 
 set bargravity c
 set barborder 3
@@ -77,10 +77,10 @@ set barinpadding 1 1
 set barpadding 6 6
 
 set font "JetBrains Mono Nerd Font:size=12:antialias=true"
-set bgcolor #000000
-set fgcolor #2e8b57
-set fwcolor #2e8b57
-set bwcolor #000000
+set bgcolor #282a36
+set fgcolor #947cc3
+set fwcolor #947cc3
+set bwcolor #282a36
 
 
 # ALIAS
@@ -132,6 +132,7 @@ addhook key bind f exec toggle_padding; toggle_borders
 #----------------------------------
 # Open terminal
 bind Return exec $TERMINAL
+definekey top s-Return exec $TERMINAL
 
 # Start alacritty with tabs
 bind T exec wmctrl -x -a "tabbed" || tabbed alacritty --embed
@@ -142,7 +143,7 @@ bind a exec ratpoison -d :0.0 -c "echo `date +'%r - %A %n    %D - %B'`  `cal | t
 
 # Open browser
 bind w exec $BROWSER
-#definekey top s-w exec $BROWSER
+definekey top s-w exec $BROWSER
 
 bind W exec ratpoison -c "select $(ratpoison -c "prompt $(ratpoison -c "windows [%n] %c" | sed -z 's/\n/ | /g'):")"
 
@@ -152,12 +153,12 @@ bind V exec ratpoison -c "hsplit" -c "resize 200 0"
 #bind f exec toggle_padding; toggle_borders
 
 # Open dmenu app launcher
-bind d exec dmenu_run -i -c -g 1 -l 10 -p 'Run' -nb '#000000' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12'
+bind d exec dmenu_run -i -c -g 1 -l 15 -p 'Run' -nb '#282a36' -sb '#bd93f9' -fn 'JetBrains Mono Nerd Font-12'
 #definekey top  Hyper_Ld-d exec ratpoison -d :0.0 -c "echo `date +'%r - %A %n    %D - %B'`  `cal | tail -n +2 | sed -e 's/^Su/\n\n Su/' -e 's/.*/ & /' -e \"s/\ $(date +%e)\ /\<$(date +%e)\>/\"`"
 
 # Open TUI filemanager
 bind r exec $TERMINAL -e $FILE
-#definekey top s-r exec $TERMINAL -e $FILE
+definekey top s-r exec $TERMINAL -e $FILE
 
 # Resize frame
 bind R resize
@@ -206,17 +207,18 @@ bind x exec picsound
 bind X exec rplogout.sh
 
 # Split windows vertical
-bind h exec split_and_focus.sh horiz
-#definekey top s-h exec split_and_focus.sh horiz
+#bind h exec split_and_focus.sh horiz
+definekey top s-h exec split_and_focus.sh horiz
 
 
 # Split windows horizontal
-bind v exec ratpoison -c "hsplit" -c "next"
-#definekey top s-v exec split_and_focus.sh vert
+#bind v exec ratpoison -c "hsplit" -c "next"
+definekey top s-v exec split_and_focus.sh vert
 
 
 # Kill/Remove selected window/frame
 bind q exec ratpoison -c delete
+definekey top s-q exec ratpoison -c delete
 bind Q exec ratpoison -c delete -c remove
 
 # Choose groups
@@ -289,16 +291,16 @@ bind <RIGHT> focusright
 
 # Swap windows
 #--------------------
-bind C-Left exchangeleft
-bind C-Right exchangeright
-bind C-Up exchangeup
-bind C-Down exchangedown
+#bind C-Left exchangeleft
+#bind C-Right exchangeright
+#bind C-Up exchangeup
+#bind C-Down exchangedown
 
 
-#definekey top s-Left exchangeleft
-#definekey top s-Right exchangeright
-#definekey top s-Up exchangeup
-#definekey top s-Down exchangedown
+definekey top s-Left exchangeleft
+definekey top s-Right exchangeright
+definekey top s-Up exchangeup
+definekey top s-Down exchangedown
 
 
 

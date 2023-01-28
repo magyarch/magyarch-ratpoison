@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRL="$(echo -e "Light\nDark\nCancel" | dmenu -i -c -g 1 -l 3 -nb '#1a1a1a' -sb '#2e8b57' -fn 'JetBrains Mono Nerd Font-12' -p  'Choose theme:')"
+SRL="$(echo -e "Light\nDark\nCancel" | dmenu -i -c -g 1 -l 3 -nb '#1a1a1a' -sb '#bd93f9' -fn 'JetBrains Mono Nerd Font-12' -p  'Choose theme:')"
 
 case $SRL in
     Light)
