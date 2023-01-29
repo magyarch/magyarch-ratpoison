@@ -17,7 +17,7 @@
 
 # AUTOSTART
 #--------------------------------------------
-# exec xmodmap .xmodmaprc
+ exec xmodmap .xmodmaprc
 # #export GDK_SCALE=2
 # exec sleep 2s && bar.sh
 # #~/.config/polybar/launch.sh &
@@ -154,6 +154,7 @@ bind V exec ratpoison -c "hsplit" -c "resize 200 0"
 
 # Open dmenu app launcher
 bind d exec dmenu_run -i -c -g 1 -l 15 -p 'Run' -nb '#282a36' -sb '#bd93f9' -fn 'JetBrains Mono Nerd Font-12'
+definekey top s-d exec dmenu_run -i -c -g 1 -l 15 -p 'Run' -nb '#282a36' -sb '#bd93f9' -fn 'JetBrains Mono Nerd Font-12'
 #definekey top  Hyper_Ld-d exec ratpoison -d :0.0 -c "echo `date +'%r - %A %n    %D - %B'`  `cal | tail -n +2 | sed -e 's/^Su/\n\n Su/' -e 's/.*/ & /' -e \"s/\ $(date +%e)\ /\<$(date +%e)\>/\"`"
 
 # Open TUI filemanager
@@ -166,15 +167,18 @@ bind R resize
 
 # Open editor
 bind E exec subl
+definekey top s-E exec subl
 
 # Open preset layouts
 bind L exec rp_layout.sh
 
 # Open gui filemanager
 bind P exec pcmanfm
+definekey top s-P exec pcmanfm
 
 # Open discord
 bind p exec discord
+definekey top s-p discord
 
 # Undo command
 bind U undo
@@ -205,6 +209,8 @@ bind x exec picsound
 
 # S,R,L
 bind X exec rplogout.sh
+definekey top s-c exec eww open --toggle powermenu
+definekey top s-C exec eww close powermenu
 
 # Split windows vertical
 #bind h exec split_and_focus.sh horiz
@@ -234,13 +240,15 @@ bind C-c exec rofi_run -l
 
 
 
-# LEFT CTRL KEYBINDS (no win keypress)
+# KEYBINDS (no win keypress)
 #------------------------------------
 definekey top s-Tab focus
 
 definekey top s-x restart
 
 definekey top s-w exec $BROWSER
+
+definekey top s-W exec $BROWSER2
 
 definekey top s-Escape quit
 
@@ -326,19 +334,19 @@ gdelete default
 # bind 5 exec rpws 5
 # bind 6 exec rpws 6
 
-bind 1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
-bind 2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
-bind 3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
-bind 4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
-bind 5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
-bind 6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
+# bind 1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
+# bind 2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
+# bind 3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
+# bind 4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
+# bind 5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
+# bind 6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
 
-#definekey top s-1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
-#definekey top s-2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
-#definekey top s-3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
-#definekey top s-4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
-#definekey top s-5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
-#definekey top s-6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
+definekey top s-1 exec ratpoison -c "gselect 1" -c "select -" -c "only" -c "next" -c "echo web"
+definekey top s-2 exec ratpoison -c "gselect 2" -c "select -" -c "only" -c "next" -c "echo chat"
+definekey top s-3 exec ratpoison -c "gselect 3" -c "select -" -c "only" -c "next" -c "echo edit"
+definekey top s-4 exec ratpoison -c "gselect 4" -c "select -" -c "only" -c "next" -c "echo music"
+definekey top s-5 exec ratpoison -c "gselect 5" -c "select -" -c "only" -c "next" -c "echo games"
+definekey top s-6 exec ratpoison -c "gselect 6" -c "select -" -c "only" -c "next" -c "echo video"
 
 
 # Move windows to next/prev workspaces

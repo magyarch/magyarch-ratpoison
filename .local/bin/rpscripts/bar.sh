@@ -19,7 +19,7 @@ CLEAN="^fg()^bg()"
 
 mhdd(){
     mhdd="$(df -h "/home" | awk ' /[0-9]/ {print $3 "/" $2}')"
-    mhdd2="$(df -h "/mnt/" | awk ' /[0-9]/ {print $3 "/" $2}')"
+    mhdd2="$(df -h "/mnt/a6c2b4d6-8662-456b-ba31-fa17c63dc57b" | awk ' /[0-9]/ {print $3 "/" $2}')"
     echo " $mhdd  $mhdd2"
 }
 
@@ -136,11 +136,11 @@ done
 
 }
 
-SLEEP_SEC=0.5
+SLEEP_SEC=0.5p
 
 #loops forever outputting a line every SLEEP_SEC secs
 while true; do
-echo "$(work)$CLEAN | $GREEN$(xwin)$CLEAN | Info: $DRACULA$(temp)$CLEAN | Ram: $YELLOW$(mem)$CLEAN | M.2: $BLUE$(mhdd)$CLEAN | Wtr: $GREEN$(wtr)$CLEAN | Date: $DRACULA$(dte) $(dte2)$CLEAN | Volume: $PINK$(vol)$CLEAN"
+echo "^ca(1,xdotool key super+1)web^ca()  ^ca(1,xdotool key super+2)chat^ca()  ^ca(1,xdotool key super+3)edit^ca()  ^ca(1,xdotool key super+4)music^ca()  ^ca(1,xdotool key super+5)games^ca()  ^ca(1,xdotool key super+6)video^ca() $CLEAN | $GREEN$(xwin)$CLEAN | Info: $DRACULA$(temp)$CLEAN | Ram: $BLUE$(mem)$CLEAN | M.2: $YELLOW$(mhdd)$CLEAN | Wtr: $GREEN$(wtr)$CLEAN | ^ca(1,eww open --toggle calendar)Date: $DRACULA$(dte) $(dte2)^ca()$CLEAN | ^ca(1,pavucontrol)Vol: $WHITE$(vol)^ca()$CLEAN | ^ca(1,eww open --toggle powermenu)Power: $RED^ca()$CLEAN"
 sleep $SLEEP_SEC
-done | dzen2 -w '1920' -ta c -h '23' -y 1 -fn "JetBrains Mono Nerd Font:size=10:antialias=true" -fg "#c3cdc8" -bg "#282a36"
+done | dzen2 -w '3840' -ta c -h '33' -y 1 -fn "JetBrains Mono Nerd Font:size=10:antialias=true" -fg "#c3cdc8" -bg "#282a36"
 

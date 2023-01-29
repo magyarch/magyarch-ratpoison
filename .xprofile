@@ -2,11 +2,11 @@
 
 # AUTOSTART
 #--------------------------------------------
-#xrandr --dpi 192
-#export GDK_SCALE=2
+xrandr --dpi 192
+export GDK_SCALE=2
 #sxhkd &
 #sxhkd -c ~/.config/i3/sxhkdrc &
-xmodmap .xmodmaprc
+#xmodmap .xmodmaprc
 #sleep 2s && sdorfehs_bar &
 #myBar &
 #autotiling &
